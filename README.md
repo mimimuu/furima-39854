@@ -4,63 +4,62 @@
 
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
-| nickname              | string     | null: false, unique: true      |
-| email                 | string     | null: false                    |
-| password              | string     | null: false                    |
+| nickname              | string     | null: false                    |
+| email                 | string     | null: false, unique: true      |
+| encrypted_password    | string     | null: false                    |
 | first_name            | string     | null: false                    |
 | last_name             | string     | null: false                    |
 | first_name_kana       | string     | null: false                    |
 | last_name_kana        | string     | null: false                    |
-| birthday              | date       | null: false                    |
+| birthday_id           | integer    | null: false                    |
 
 ### Association
 - has_many  :items
-- has_one   :card
-- has_one   :detail
+- has_many   :orders
 
 ## itemsテーブル
 
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
-| image                 | text       | null: false                    |
 | name                  | string     | null: false                    |
 | content               | text       | null: false                    |
-| category              | string     | null: false, foreign_key: true |
-| condition             | string     | null: false                    |
-| shipping_fee_burden   | string     | null: false                    |
-| shipping_area         | string     | null: false                    |
-| days_until_shipping   | string     | null: false, foreign_key: true |
-| selling_price         | integer    | null: false, foreign_key: true |
-| user_id               | references | null: false, foreign_key: true |
+| category_id           | integer    | null: false                    |
+| condition_id          | integer    | null: false                    |
+| shipping_fee_burden_id| integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
+| days_until_shipping_id| integer    | null: false                    |
+| selling_price         | integer    | null: false                    |
+| user                  | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :users
-- has_one :deliveries
+- belongs_to :user
+- has_one :order
 
 
 ## deliveriesテーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| post_code     | string     | null: false                    |
-| prefectures   | string     | null: false, foreign_key: true |
-| municipalities| string     | null: false, foreign_key: true |
-| street_address| string     | null: false, foreign_key: true |
-| building_name | string     | null: false                    |
-| telephone_num | integer    | null: false, foreign_key: true |
-| user_id       | references | null: false, foreign_key: true |
-| item_id       | references | null: false, foreign_key: true |
-| cord_id       | references | null: false, foreign_key: true |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| post_code        | string     | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| municipalities   | string     | null: false                    |
+| street_address   | string     | null: false                    |
+| building_name    | string     |                                |
+| telephone_num    | string     | null: false                    |
+| order            | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :users
-- belongs_to :items
-- belongs_to :cards
+- belongs_to :order
+
 
 ## ordersテーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| user_id       | references | null: false, foreign_key: true |
-| item_id       | references | null: false, foreign_key: true |
-| delivery_id   | references | null: false, foreign_key: true |
+| user          | references | null: false, foreign_key: true |
+| item          | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one :delivery
