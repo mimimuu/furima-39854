@@ -11,7 +11,7 @@
 | last_name             | string     | null: false                    |
 | first_name_kana       | string     | null: false                    |
 | last_name_kana        | string     | null: false                    |
-| birthday_id           | integer    | null: false                    |
+| birthday              | date       | null: false                    |
 
 ### Association
 - has_many  :items
@@ -26,7 +26,7 @@
 | category_id           | integer    | null: false                    |
 | condition_id          | integer    | null: false                    |
 | shipping_fee_burden_id| integer    | null: false                    |
-| prefecture_id      | integer    | null: false                    |
+| prefecture_id         | integer    | null: false                    |
 | days_until_shipping_id| integer    | null: false                    |
 | selling_price         | integer    | null: false                    |
 | user                  | references | null: false, foreign_key: true |
