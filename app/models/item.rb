@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-
   belongs_to :user
   has_one_attached :image
 
@@ -12,11 +11,11 @@ class Item < ApplicationRecord
 
   validates :name,                     presence: true
   validates :content,                  presence: true
-  validates :category_id,              presence: true, numericality: { other_than: 1, message: "can't be blank"}
-  validates :condition_id,             presence: true, numericality: { other_than: 1, message: "can't be blank"}
-  validates :shipping_fee_burden_id,   presence: true, numericality: { other_than: 1, message: "can't be blank"}
-  validates :prefecture_id,            presence: true, numericality: { other_than: 0, message: "can't be blank"}
-  validates :days_until_shipping_id,   presence: true, numericality: { other_than: 1, message: "can't be blank"}
-  validates :selling_price,            presence: true, numericality: { only_integer: true, in: 300..9999999}
+  validates :category_id,              presence: true, numericality: { other_than: 1, message: "can't be blank" }
+  validates :condition_id,             presence: true, numericality: { other_than: 1, message: "can't be blank" }
+  validates :shipping_fee_burden_id,   presence: true, numericality: { other_than: 1, message: "can't be blank" }
+  validates :prefecture_id,            presence: true, numericality: { other_than: 0, message: "can't be blank" }
+  validates :days_until_shipping_id,   presence: true, numericality: { other_than: 1, message: "can't be blank" }
+  validates :selling_price,            presence: true, numericality: { only_integer: true, in: 300..9_999_999 }
   validates :image,                    presence: true
 end

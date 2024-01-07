@@ -54,17 +54,17 @@ RSpec.describe Item, type: :model do
       it 'selling_priceは半角数値でないと登録できない' do
         @item.selling_price = '１１１１１'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Selling price is not a number")
+        expect(@item.errors.full_messages).to include('Selling price is not a number')
       end
       it 'selling_priceは300より小さい時登録できない' do
         @item.selling_price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Selling price must be in 300..9999999")
+        expect(@item.errors.full_messages).to include('Selling price must be in 300..9999999')
       end
       it 'selling_priceは9,999,999より大きい時登録できない' do
-        @item.selling_price = 10000000
+        @item.selling_price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Selling price must be in 300..9999999")
+        expect(@item.errors.full_messages).to include('Selling price must be in 300..9999999')
       end
       it 'imageが空では登録できない' do
         @item.image = nil

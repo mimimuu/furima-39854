@@ -17,9 +17,8 @@ class ApplicationController < ActionController::Base
   end
 
   def user_auth?
-    unless controller_name == 'items' && action_name =='index'
-      true
-    end
-  end
+    return if controller_name == 'items' && action_name == 'index'
 
+    true
+  end
 end
