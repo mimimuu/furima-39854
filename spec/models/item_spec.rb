@@ -21,28 +21,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Content can't be blank")
       end
-      it 'category_idが空では登録できない' do
-        @item.category_id = ''
+      it 'category_idが1(未選択)では登録できない' do
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
-      it 'condition_idが空では登録できない' do
-        @item.condition_id = ''
+      it 'condition_idが1(未選択)では登録できない' do
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
-      it 'shipping_fee_burden_idが空では登録できない' do
-        @item.shipping_fee_burden_id = ''
+      it 'shipping_fee_burden_idが1(未選択)では登録できない' do
+        @item.shipping_fee_burden_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping fee burden can't be blank")
       end
-      it 'prefecture_idが空では登録できない' do
-        @item.prefecture_id = ''
+      it 'prefecture_idが0(未選択)では登録できない' do
+        @item.prefecture_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
-      it 'days_until_shipping_idが空では登録できない' do
-        @item.days_until_shipping_id = ''
+      it 'days_until_shipping_idが1(未選択)では登録できない' do
+        @item.days_until_shipping_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Days until shipping can't be blank")
       end
@@ -70,6 +70,11 @@ RSpec.describe Item, type: :model do
         @item.image = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
+      it 'userが紐づいていないと登録できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
