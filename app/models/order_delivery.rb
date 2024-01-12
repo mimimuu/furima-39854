@@ -8,7 +8,7 @@ class OrderDelivery
     validates :municipalities
     validates :street_address
     validates :telephone_num, numericality: { only_integer: true, message: 'is invalid. Input only number' },
-                              length: { in: 10..11, message: 'is too short' }
+                              length: { in: 10..11 }
     validates :user_id
     validates :item_id
     validates :token
