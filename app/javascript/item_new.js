@@ -10,4 +10,5 @@ function item_new(){
   })
 };
 
-window.addEventListener('turbo:load',item_new)
+window.addEventListener('turbo:load',item_new);
+window.addEventListener("turbo:render",item_new);
