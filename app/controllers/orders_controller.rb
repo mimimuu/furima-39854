@@ -1,12 +1,11 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
   before_action :payjp_pass, only: [:index]
 
   def index
-    if user_signed_in? && current_user.id != @item.user_id && @item.order.nil?
-      @orderdelivery = OrderDelivery.new
-    else
-      redirect_to root_path
-    end
+    return redirect_to root_path unless user_signed_in? && current_user.id != @item.user_id && @item.order.nil?
+
+    @orderdelivery = OrderDelivery.new
   end
 
   def create
